@@ -1,0 +1,105 @@
+---
+title: "R Programming - Quiz 1"
+author: "Dejan Pljevljakusic"
+date: "Thursday, March 19, 2015"
+output: html_document
+---
+
+Hereby, I have presented how I have solved the tasks in R Programming - Week 1 Quiz.
+
+I have only presented solutions for data_file related questions (11-20)
+
+### Question 11
+In the dataset provided for this Quiz, what are the column names of the dataset?
+
+```{r}
+d1 <- read.csv(file.path("http://amapseec.org/coursera/", "hw1_data.csv")) ## Opens csv file and makes data frame 'd1'
+d1 ## Prints out complete data frame d1
+```
+
+### Question 12
+Extract the first 2 rows of the data frame and print them to the console. What does the output look like?
+
+```{r}
+extract <- d1[1:2,] ## Extracts header and first two rows
+extract ## Prints extracted extacted rows
+```
+
+### Question 13
+How many observations (i.e. rows) are in this data frame?
+
+```{r}
+nrow(d1) ## Count number of rows in d1
+```
+
+### Question 14
+Extract the last 2 rows of the data frame and print them to the console. What does the output look like?
+
+```{r}
+extract <- d1[152:153,] ## Extracts header and last two rows
+extract ## Prints extracted extracted rows
+```
+
+### Question 15
+What is the value of Ozone in the 47th row?
+
+```{r}
+extract <- d1[47,] ## Extracts header and 47 row
+extract ## Prints extracted extracted rows
+```
+
+### Question 16
+How many missing values are in the Ozone column of this data frame?
+
+```{r}
+bad <- is.na(d1$Ozone) ## Creates logical vector 'bad' of NA values in column 'Ozone'
+sum(bad) ## Counts TRUEs in logical vector 'bad'
+```
+
+### Question 17
+What is the mean of the Ozone column in this dataset? Exclude missing values (coded as NA) from this calculation.
+
+```{r}
+real <- d1$Ozone[!bad] ## Creates subset of vector in column Ozone where NA is FALSE
+real ## Prints new vector
+mean(real) ## Gets mean of new vector
+```
+
+### Question 18
+Extract the subset of rows of the data frame where Ozone values are above 31 and Temp values are above 90. What is the mean of Solar.R in this subset?
+
+```{r}
+d2 <- subset(d1, Ozone > 31 & Temp > 90) ## Creates subset of d1 for selected conditions
+d2 ## Prints out new data frame 
+mean(d2$Solar.R) ## Gets mean of column Solar.R
+```
+
+### Question 19
+What is the mean of "Temp" when "Month" is equal to 6? 
+
+```{r}
+d3 <- subset(d1, Month == 6) ## Creates subset of d1 for selected condition
+d3
+mean(d3$Temp) ## Gets mean of coulumn Temp
+```
+
+### Question 20
+What was the maximum ozone value in the month of May (i.e. Month = 5)?
+
+```{r}
+d4 <- subset(d1, Month == 5) ## Creates subset of d1 for selected condition
+d4 ## Prints out new data frame
+bad2 <- is.na(d4$Ozone) ## Creates logical vector 'bad' of NA values in column 'Ozone'
+d5 <- d4$Ozone[!bad2] ## Creates subset of vector in column Ozone where NA is FALSE 
+d5 ## Prints out new vector
+max(d5) ## Gets maximum of new vector
+```
+
+
+
+
+
+
+
+
+
